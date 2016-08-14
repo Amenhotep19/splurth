@@ -1,13 +1,13 @@
 package com.samatkinson;
 
 public class ChemicalAnalyzer {
-    public boolean isValid(String element, String symbol) {
+    public AnalyzerResponse isValid(String element, String symbol) {
         element = element.toLowerCase();
         symbol = symbol.toLowerCase();
 
-        return symbol.length() == 2
+        return new AnalyzerResponse(symbol.length() == 2
             && containsLettersFromElement(element, symbol)
-            && letterOccursTwiceForceNameToBeThatLetterTwice(element, symbol);
+            && letterOccursTwiceForceNameToBeThatLetterTwice(element, symbol),"");
     }
 
     private boolean letterOccursTwiceForceNameToBeThatLetterTwice(String element, String symbol) {
