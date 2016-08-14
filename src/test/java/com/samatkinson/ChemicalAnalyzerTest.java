@@ -14,6 +14,7 @@ public class ChemicalAnalyzerTest {
         assertThat(chemicalAnalyzer.isValid("Born", "bo").valid, is(true));
         assertThat(chemicalAnalyzer.isValid("Born", "b").valid, is(false));
         assertThat(chemicalAnalyzer.isValid("Born", "bor").valid, is(false));
+        assertThat(chemicalAnalyzer.isValid("Born", "bor").description,  is(AnalyzerResponse.CHEMICAL_IS_NOT_TWO_LETTERS));
     }
     @Test
     public void analyzerIsCaseInsensitive() throws Exception {
