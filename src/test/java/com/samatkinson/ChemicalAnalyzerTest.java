@@ -14,7 +14,7 @@ public class ChemicalAnalyzerTest {
         assertThat(chemicalAnalyzer.isValid("Born", "bo").valid, is(true));
         assertThat(chemicalAnalyzer.isValid("Born", "b").valid, is(false));
         assertThat(chemicalAnalyzer.isValid("Born", "bor").valid, is(false));
-        assertThat(chemicalAnalyzer.isValid("Born", "bor").description,  is(AnalyzerResponse.CHEMICAL_IS_NOT_TWO_LETTERS));
+        assertThat(chemicalAnalyzer.isValid("Born", "bor").description,  is(AnalyzerResponse.SYMBOL_IS_NOT_TWO_LETTERS));
     }
     @Test
     public void analyzerIsCaseInsensitive() throws Exception {
@@ -28,7 +28,11 @@ public class ChemicalAnalyzerTest {
     public void symbolContainsOnlyLettersFromTheChemicalInOrder() throws Exception {
         assertThat(chemicalAnalyzer.isValid("Born", "bn").valid, is(true));
         assertThat(chemicalAnalyzer.isValid("Born", "rx").valid, is(false));
+        assertThat(chemicalAnalyzer.isValid("Born", "rx").description,  is(AnalyzerResponse.SYMBOL_LETTERS_NOT_ALL_FROM_CHEM_NAME));
+
         assertThat(chemicalAnalyzer.isValid("Born", "no").valid, is(false));
+        assertThat(chemicalAnalyzer.isValid("Born", "no").description,  is(AnalyzerResponse.SYMBOL_LETTERS_NOT_IN_ORDER));
+
     }
     @Test
     public void ifLetterAppearsTwiceNameMustBeThatLetterTwice() throws Exception {
